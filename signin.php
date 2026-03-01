@@ -53,8 +53,9 @@ if (isset($_POST['email'])) {
                     <input class="textInpBox" type="password" name="password" placeholder="Password" required>
                 </div>
                 <input type="submit" value="Sign in">
-                <p>Don't have an account? <a href="register.php">Register</a></p>
+                <p>Don't have an account? <a href="index.php">Register</a></p>
             </form>
         </div>
     </body>
+
 </html>
