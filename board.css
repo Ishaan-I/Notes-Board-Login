@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    cursor: crosshair;
+}
+
+h1 {
+    margin: 10px 15px
+}
+
+.note {
+    position: absolute;
+    cursor:text;
+    resize: both;
+    overflow: auto;
+    scrollbar-width: none;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 800px;
+    max-height: 800px;
+    padding: 2px;
+}
+
+.paper {
+    /* margin: 2.5px; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+    border-radius: 2px 2px 10px 10px;
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.03);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "title delete"
+        "content content";
+}
+
+.title:focus, .content:focus {
+    outline: none;
+}
+
+#ghost {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    width: 200px;
+    height: 200px;
+    opacity: 0.5;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.title {
+    background: none;
+    grid-area: title;
+    font-size: 16px;
+    word-break: break-all;
+    font-weight: bold;
+    border-bottom: 0.5px #333 dotted;
+    flex: 0 0 auto;
+}
+
+.delete-btn {
+    grid-area: delete;
+    justify-self: center;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
+    flex: 1 0 auto;
+}
+
+.delete-btn:hover {
+    color: #000;
+}
+
+.content {
+    grid-area: content;
+    font-size: 14px;
+    /* font-family: monospace; */
+    flex: 1 1 auto;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+#colour-menu {
+    position: fixed;
+    cursor: default;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.clrBtn {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.clrBtn:hover {
+    transform:scale(110%);
+    border: 2px rgba(0, 0, 0, 0.2) solid
+}
+
+#ui-buttons {
+    cursor: default;
+    top: 15px;
+    right: 15px;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.uiBtn {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 999;
+    padding: 8px;
+    margin-left: 8px;
+    background: #fff;
+    border: none;
+    outline: 0 rgba(0, 0, 0, 0) solid;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: 100ms;
+}
+.uiBtn:hover {
+    transform:scale(110%);
+    outline: 1px rgba(0, 0, 0, 0.2) solid
+}
