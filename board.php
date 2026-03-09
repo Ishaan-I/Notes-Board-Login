@@ -47,16 +47,21 @@ echo "<script>const savedNotes = " . json_encode($usernotes) . "</script>";
         <link rel="stylesheet" href="board.css">
     </head>
 
-    <body>
+    <body id="body">
         <h1><?php echo "<h1>$name's Board</h1>"; ?></h1>
         <div id="ghost"></div>
         <div id="colour-menu"></div>
+
+        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" id="lines">
+            <line x1="0" y1="0" x2="300" y2="200" style="stroke:red;stroke-width:2" />
+        </svg>
+
         <div id="ui-buttons">
+            <button class="uiBtn" id="clearBtn">🗑️</button>
             <form method="POST" id="saveForm">
                 <input type="hidden" name='saveData' id="notesData">
                 <button type="submit" class="uiBtn">💾</button>
             </form>
-            <button class="uiBtn" id="clearBtn">🗑️</button>
             <a href="signout.php" class="uiBtn">🚪</a>
         </div>
 
