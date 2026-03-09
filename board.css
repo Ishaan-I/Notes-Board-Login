@@ -7,11 +7,16 @@
 }
 
 body {
+    background-color: #fff;
     background-image:
-        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
     background-size: 20px 20px;
     cursor: crosshair;
+}
+
+body.link-mode {
+    background-color: #eee;
 }
 
 h1 {
@@ -20,6 +25,7 @@ h1 {
 
 .note {
     position: absolute;
+    background: none;
     cursor:text;
     resize: both;
     overflow: auto;
@@ -31,9 +37,17 @@ h1 {
     padding: 2px;
 }
 
+.note.selected .paper {
+    outline: 2px #c7e6ff dashed;
+}
+
+.selected {
+    background: none;
+}
+
 .paper {
-    /* margin: 2.5px; */
     position: relative;
+    outline: none;
     width: 100%;
     height: 100%;
     padding: 10px;
@@ -44,11 +58,11 @@ h1 {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto 1fr;
     grid-template-areas:
-        "title delete"
+        "title button"
         "content content";
 }
 
-.title:focus, .content:focus {
+.content:focus {
     outline: none;
 }
 
@@ -69,12 +83,16 @@ h1 {
     font-size: 16px;
     word-break: break-all;
     font-weight: bold;
-    border-bottom: 0.5px #333 dotted;
+    border-bottom: 1px rgba(0, 0, 0, 0.3) dotted;
     flex: 0 0 auto;
 }
+.title:focus {
+    outline: none;
+    border-bottom: 1px rgba(0, 0, 0, 0.7) dotted;
+}
 
-.delete-btn {
-    grid-area: delete;
+.note-btn {
+    grid-area: button;
     justify-self: center;
     cursor: pointer;
     width: 20px;
@@ -89,14 +107,27 @@ h1 {
     flex: 1 0 auto;
 }
 
-.delete-btn:hover {
+.note-btn:hover {
     color: #000;
 }
+
+.link-preview {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    padding: 6px 10px;
+    border-radius: 2px 2px 8px 8px;
+    border: 1px rgba(0,0,0,0.2) solid;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 4px 4px 2px rgba(0,0,0,0.05);
+    white-space: nowrap;
+}
+
 
 .content {
     grid-area: content;
     font-size: 14px;
-    /* font-family: monospace; */
     flex: 1 1 auto;
     overflow: scroll;
     scrollbar-width: none;
@@ -139,8 +170,8 @@ h1 {
     z-index: 999;
     display: flex;
     font-size: 20px;
-    padding: 0;
-    margin: 0;
+    gap: 8px;
+    padding: 8px;
 }
 
 .uiBtn {
@@ -149,7 +180,6 @@ h1 {
     font-size: 20px;
     z-index: 999;
     padding: 8px;
-    margin-left: 8px;
     background: #fff;
     border: none;
     outline: 0 rgba(0, 0, 0, 0) solid;
